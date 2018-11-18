@@ -1,10 +1,22 @@
+#######################################################################
+# This class is the main method class for the cli-audio program that 
+# Professor Woodring started to write for this assignment. This takes
+# all the classes FrontEnd, Player, and Library and makes a fully 
+# functional audio player.
+#
+# @author Hai Duong, Theodore Lang, Trung-Vuong Pham
+# @date November 18, 2018
+#######################################################################
+
 #!/usr/bin/env python3
 
+# imports from classes used
 from front.FrontEnd import FrontEnd
 from player.Player import Player
 from library.Library import Library
 from curses import wrapper
 
+# main method that runs cli-audio
 def main():
     player = Player()
     library = Library()
