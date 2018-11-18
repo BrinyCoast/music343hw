@@ -72,15 +72,16 @@ class FrontEnd:
         changeWindow = curses.newwin(5, 40, 15, 50) #hieght, width, y, x
         changeWindow.border()
         changeWindow.addstr(0,0, "What is the file path?", curses.A_REVERSE)
+        changeWindow.addstr(1,0, "EX: Type 'media/' plus the song name", curses.A_REVERSE)
         self.stdscr.refresh()
         curses.echo()
-        path = changeWindow.getstr(1,1, 30)
+        path = changeWindow.getstr(2,1, 30)
         curses.noecho()
         del changeWindow
         self.stdscr.touchwin()
         self.stdscr.refresh()
         if self.player.currentSong == "Nothing playing.":
-            self.stdscr.addstr(17, 10, "ERROR: Choose Library First")
+            self.stdscr.addstr(17, 10, "ERROR: Choose Library/Song First")
             return
         self.player.stop()
         try:
@@ -115,5 +116,6 @@ class FrontEnd:
             
     
     def quit(self):
-        self.player.stop()
+        if self.player.currentSong != "Nothing playing.":
+            self.player.stop()
         exit()

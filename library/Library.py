@@ -16,8 +16,9 @@ class Library:
         changeWindow = curses.newwin(5, 40, 15, 50) #hieght, width, y, x
         changeWindow.border()
         changeWindow.addstr(0,0, "What is the directory?", curses.A_REVERSE)
+        changeWindow.addstr(1,0, "EX: type 'media' if directory", curses.A_REVERSE)
         curses.echo()
-        path = changeWindow.getstr(1,1, 30)
+        path = changeWindow.getstr(2,1, 30)
         curses.noecho()
         self.getFiles(path)
 
