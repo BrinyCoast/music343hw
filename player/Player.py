@@ -3,6 +3,8 @@
 import pyaudio
 import wave
 import time
+import os
+from excepts.CLI_Audio_Exception import CLI_Audio_File_Exception
 
 class Player:
     def __init__(self):
@@ -23,7 +25,13 @@ class Player:
 
     def play(self, track):
         self.paused = False
+        
+        song = os.path.isfile(track)
+        if not song:
+            raise CLI_Audio_File_Exception
+            
         self.currentSong = track
+            
         self.wf = wave.open(track, 'rb')
 
         # instantiate PyAudio (1)
@@ -49,4 +57,3 @@ class Player:
     def callback(self, in_data, frame_count, time_info, status):
         data = self.wf.readframes(frame_count)
         return (data, pyaudio.paContinue)
-
